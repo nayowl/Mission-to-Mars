@@ -20,7 +20,7 @@ Website source for data scraping:
 * Hemisphere          : https://marshemispheres.com/
 
 ## 3 Result
-Figure 1  and Figure 2 is the flask website application  that included news,news images, mars facts table and hemisphere image and title. Each time the " Scrape New Data" button is clicked the new information will be updated both in the database and website. Figure 1 is the website application view in desktop  while Figure 2 is the website application view in the mobile device.
+Figure 1  and Figure 2 is the flask website application  that included news,news images, mars facts table and hemisphere image and title. Each time the " Scrape New Data" button is clicked, the new information will be updated both in the database and website. Figure 1 is the website application view in desktop  while Figure 2 is the website application view in the mobile device.
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/88597187/139542385-4a443012-7ce7-403f-b870-69010320610f.png"/>
