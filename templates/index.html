@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+    
+      section.news {
+        background-color: #eef2f6;
+        margin: 30px auto 0px !important;
+        padding-bottom: 50px;
+        padding-top: 50px;
+        padding-left: 15px;
+      }
+      section.facts{
+        background-color: #8B0000;
+        margin: 30px auto 0px !important;
+        padding:20px;
+
+      }
+      img.center{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        
+      }
+      </style>
+
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Mission to Mars</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Add Jumbotron to Header -->
+      <div class="jumbotron text-center" style="background-image:url(https://marshemispheres.com/images/full.jpg);">
+        <h1 style="font-family: Copperplate, Papyrus, fantasy;font-weight: bold;">Mission to Mars</h1>
+        <!-- Add a button to activate scraping script -->
+        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+      </div>
+
+      <section class="news">
+      <!-- Add section for Mars News -->
+        <div class="row" id="mars-news">
+          <div class="col-md-12 text-center">
+            <div class="media">
+              <div class="media-body">
+                <h2 style="font-weight: bold;">Latest Mars News</h2>
+                <br>
+                <br>
+                  <!-- if images is False/None/non-existent, then default to error message -->
+                <img
+                  src="{{mars.news_image | default('static/images/error.png', true) }}"
+                  class="img-responsive center img-circle"
+                  alt="Responsive image"
+                />
+                <br>
+                <br>
+                <h4 class="media-heading" style="font-weight: bold;">{{ mars.news_title }}</h4>
+                <br>
+              <p style="font-size:120%;">{{ mars.news_paragraph }}</p>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section for Featured Image and Facts table -->
+      <section class="facts">
+        <div class="row" id="mars-featured-image">
+          <div class="col-lg-8 col-md-8 col-sm-12">
+            <h3 class="text-center" style="font-weight: bold;color:cornsilk;">Featured Mars Image</h3>
+  
+            <!-- if images is False/None/non-existent, then default to error message -->
+            <img
+              src="{{mars.featured_image | default('static/images/error.png', true) }}"
+              class="img-responsive"
+              alt="Responsive image"
+            />
+          </div>
+          
+          <div class="col-xs-6 col-md-4">
+            <!-- Mars Facts -->
+            <div class="row" id="mars-facts" style="padding:15px;color:cornsilk;">
+              <h3 class="text-center" style="font-weight:bold;color:cornsilk;">Mars Facts</h3>
+              {{ mars.facts | safe }}
+            </div>
+          </div>
+          
+        </div>
+      </section>
+      
+
+      <!-- Section for Mars Hemispheres -->
+      <div class="row" id="mars-hemispheres">
+        <div class="page-header">
+          <h2 class="text-center" style="font-weight: bold;">Mars Hemispheres</h2>
+        </div>
+
+        {% for hemisphere in mars.hemispheres %}
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <a target="_blank" href="{{hemisphere.img_url | default('static/images/error.png', true)}}">
+              <img class="img-thumbnail" src="{{hemisphere.img_url | default('static/images/error.png', true)}}" alt="...">
+            </a>
+            <div class="caption">
+              <h3 class="text-center">{{hemisphere.title}}</h3>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
